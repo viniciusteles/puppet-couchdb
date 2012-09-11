@@ -15,7 +15,7 @@ Install `couchdb` and bind it to the default IP address 127.0.0.1 and the defaul
 
     include couchdb
 
-Install `couchdb` and bind it to the given IP address.
+Install `couchdb` and bind it to the given IP address and port.
 
     class { 'couchdb':
       ip   => '192.168.170.150',
