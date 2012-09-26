@@ -38,9 +38,10 @@ class couchdb($ip='UNSET', $port='UNSET') {
   }
 
   service { "couchdb":
-    ensure    => running,
-    enable    => true,
-    hasstatus => true,
-    require   => Package['couchdb'],
+    ensure     => running,
+    enable     => true,
+    hasstatus  => true,
+    hasrestart => true,
+    require    => Package['couchdb'],
   }
 }
