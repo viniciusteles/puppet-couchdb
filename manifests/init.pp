@@ -1,4 +1,9 @@
-class couchdb($ip='UNSET', $port='UNSET') {
+class couchdb(
+  $ip='UNSET', 
+  $port='UNSET',
+  $require_valid_user='UNSET',
+  $admin_password='UNSET',
+) {
   # Module compatibility checks
   #
   if ! ($::operatingsystem in ['Debian', 'Ubuntu']) {
@@ -21,6 +26,18 @@ class couchdb($ip='UNSET', $port='UNSET') {
     $port_param = '5984'
   } else {
     $port_param = $port
+  }
+
+  if ($require_valid_user == 'UNSET') {
+    $require_valid_user_line = "; require_valid_user = false"
+  } else {
+    $require_valid_user_line = "require_valid_user = ${require_valid_user}"
+  }
+
+  if ($admin_password == 'UNSET') {
+    $admin_password_line = "; admin = mysecretpassword"
+  } else {
+    $admin_password_line = "admin = ${admin_password}"
   }
 
   file { '/etc/couchdb/local.ini':
